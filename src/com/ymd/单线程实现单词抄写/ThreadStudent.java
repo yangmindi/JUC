@@ -1,17 +1,18 @@
 package com.ymd.单线程实现单词抄写;
 
-public class Student {
+public class ThreadStudent extends Thread{
     private String name;
     private Punishment punishment;
 
-    public Student(String name, Punishment punishment) {
+    public ThreadStudent(String name, Punishment punishment){
+        //2.调用Thread的构造方法，设置ThreadName
+        super(name);
         this.name = name;
         this.punishment = punishment;
     }
 
-    public void copyWord(){
-        int count = 0;//记录抄写的总次数
-        //本线程的名称
+    public void copyWorld(){
+        int count = 0;
         String threadName = Thread.currentThread().getName();
 
         while(true){
@@ -26,5 +27,9 @@ public class Student {
         }
         System.out.println(threadName + "线程-" + name + "一共抄写了" + count + "次！");
     }
-
+    //3.重写run方法，调用copyWorld完成任务
+    public void run(){
+        copyWorld();
+    }
 }
+
